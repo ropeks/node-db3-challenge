@@ -16,12 +16,14 @@ function findSteps(id) {
       .where('schemes.id', id);
 }
   
-function add(scheme) {
-    return db('schemes').insert(scheme);
+async function add(scheme) {
+    const idArr = await db('schemes').insert(scheme);
+    return findById(idArr[0]);
 }
   
-function update(changes, id) {
-  return db('schemes').where({ id }).update(changes);
+async function update(changes, id) {
+  await db('schemes').where({ id }).update(changes);
+  return findById(id);
 }
   
 function remove(id) {
