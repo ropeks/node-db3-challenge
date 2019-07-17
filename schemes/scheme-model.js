@@ -2,11 +2,11 @@ const knex = require('knex');
 const db = knex(require('../knexfile').development);
 
 function find() {
-   
+    return db('schemes');
 }
   
-function findById() {
-  
+function findById(id) {
+    return db('schemes').where({ id });
 }
   
 function findSteps() {
